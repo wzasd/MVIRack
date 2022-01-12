@@ -1,0 +1,54 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+}
+
+android {
+    compileSdk 31
+
+    defaultConfig {
+        minSdk 16
+        targetSdk 31
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+    kotlinOptions {
+        jvmTarget = '11'
+    }
+}
+
+dependencies {
+    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation  'androidx.activity:activity-ktx:1.4.0'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.4.0'
+    implementation 'com.afollestad.material-dialogs:core:3.3.0'
+    implementation 'androidx.appcompat:appcompat:1.4.0'
+    implementation 'com.google.android.material:material:1.4.0'
+    implementation 'io.github.jeremyliao:live-event-bus-x:1.8.0'
+    //引入协程
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2")
+    //优雅的 retrofit 回调方式
+    implementation "io.github.wzasd:gin:1.0.0"
+    //处理储存模块
+    implementation 'androidx.room:room-runtime:2.4.0'
+    annotationProcessor("androidx.room:room-compiler:2.4.0")
+    //Kotlin Extensions and Coroutines support for Room
+    implementation 'androidx.room:room-ktx:2.4.0'
+    // To use Kotlin annotation processing tool (kapt)
+    kapt("androidx.room:room-compiler:2.4.0")
+}
