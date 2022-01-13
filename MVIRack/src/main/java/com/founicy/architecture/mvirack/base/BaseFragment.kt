@@ -17,7 +17,7 @@ import java.lang.reflect.Type
  * 基Activity
  * 这里根据项目业务可以换成你自己熟悉的BaseActivity
  */
-abstract class BaseFragment<VM :BaseViewModel<*>> : Fragment(),IBaseView {
+abstract class BaseFragment<VM :BaseViewModel> : Fragment(),IBaseView {
     protected var viewModel: VM? = null
     private var dialog: MaterialDialog? = null
 
@@ -51,7 +51,7 @@ abstract class BaseFragment<VM :BaseViewModel<*>> : Fragment(),IBaseView {
             val modelClass: Class<*>
             val type: Type = javaClass.genericSuperclass
             modelClass = if (type is ParameterizedType){
-                type.actualTypeArguments[1] as Class<BaseViewModel<*>>
+                type.actualTypeArguments[1] as Class<BaseViewModel>
             }else{
                 BaseViewModel::class.java
             }

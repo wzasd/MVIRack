@@ -17,7 +17,7 @@ import android.util.Log
  * 基Activity
  * 这里根据项目业务可以换成你自己熟悉的BaseActivity
  */
-abstract class BaseActivity<VM :BaseViewModel<*>>() : AppCompatActivity(),IBaseView {
+abstract class BaseActivity<VM :BaseViewModel>() : AppCompatActivity(),IBaseView {
 
     protected var viewModel: VM? = null
     private var dialog: MaterialDialog? = null
@@ -47,7 +47,7 @@ abstract class BaseActivity<VM :BaseViewModel<*>>() : AppCompatActivity(),IBaseV
             val modelClass: Class<*>
             val type: Type = javaClass.genericSuperclass
             modelClass = if (type is ParameterizedType){
-                type.actualTypeArguments[1] as Class<BaseViewModel<*>>
+                type.actualTypeArguments[1] as Class<BaseViewModel>
             }else{
                 BaseViewModel::class.java
             }
